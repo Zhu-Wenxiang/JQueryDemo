@@ -7,13 +7,24 @@
 	</head>
 	<body>
 		This is the jQuery practice。<br/>
+		<a href="javascript:void(0);" id="btn1">亮起来</a><br/>
 		<input type="checkbox" name="accept" id="true" value="true" />是否接受？
 		<div id="1st">
 			
 		</div>
 	</body>
 	<script type="text/javascript">
-		
-		
+		$(document).ready(function(){
+			$("a").click(function(){
+				$("#1st").html("点击显示出来的内容").css("background-color","red");	
+				$("input[name='accept']").click(function(){//也可以绑定change方法
+					if(this.checked){//$(this).attr("checked")
+						alert("you choose yes");	
+					}else{
+						alert("please confirm");	
+					}
+				})
+			})
+		});
 	</script>
 </html>
