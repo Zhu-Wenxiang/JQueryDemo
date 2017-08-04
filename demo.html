@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="jquery/jquery-1.8.3.min.js" ></script>
+		<meta charset="UTF-8">
+		<title>jquery练习</title>
+		<script type="text/javascript">
+			//隔行变色代码$("tr:even").not(":first").css("background-color","#eee");
+			//$("tr:even").not(":first").CSS("background-color","#eee");
+			//window.onload=function(){}
+			$(document).ready(function(){
+				$("#1st").html("hello,this is the first jQuery");
+				$("#1").click(function(){
+					$(this).css("background-color","aqua");
+					$("p").addClass("show")
+				})
+				$("span").click(function(){
+					alert("点击显示了alert");
+				})
+			});
+		</script>
+		<style type="text/css">
+			p{display:none;}
+			.show{display:block}
+		</style>
+	</head>
+	<body>
+	<div id="1st"></div>		
+	<a id="1" href="javascript:void(0);" title="点击查看">查看什么是受益人</a>
+	<p>
+		<strong>解答：</strong>
+		受益人是指人身保险中的
+	</p>
+	<span><a href="javascript:;">点击显示alert</a></span>
+	</body>
+</html>
