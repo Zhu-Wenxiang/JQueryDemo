@@ -28,6 +28,8 @@
 				</td>
 			</tr>	
 		</table>
+		<input	type="button" value="显示已经选择的内容"/>
+		<div id="selectedContent"></div>
 	</body>
 	<script type="text/javascript">
 		$(function(){
@@ -42,6 +44,13 @@
 				if (selectedopt.lenght!=0) {
 					$("#left").append(selectedopt);
 				}
+			})
+			$("table~input").click(function(){
+				var result="";
+				$(":selected").each(function(i,element){
+					result+=++i + "." +$(element).val() + "<br/>";
+				})
+				$("#selectedContent").html(result);
 			})
 		})
 	</script>
