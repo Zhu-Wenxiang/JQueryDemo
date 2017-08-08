@@ -52,6 +52,12 @@
 				})
 				$("#selectedContent").html(result);
 			})
+			var btnEvent={
+				click : function(){$("form").submit()},
+				mouseover : function(){$(this).css("font-weight","bold")},
+				mouseout : function(){$(this).css("font-weight","bold")}
+			}
+			$("#btn1").bind(btnEvent);
 		})
 	</script>
 </html>
