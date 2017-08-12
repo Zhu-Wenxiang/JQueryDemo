@@ -1,9 +1,75 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
-	<body>
-	</body>
+<head>
+<title>ajax</title>
+<META HTTP-EQUIV="content-type" CONTENT="text/html;charset=UTF-8">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#username").blur(function(){
+	var username=$(this).val();
+	if(username==""){
+		alert("请输入用户名");
+		return false;
+	}
+	var strData="username="+username;
+	
+	$.ajax({
+		url:"loginservlet1",
+		type:"get",
+		data:{"username":username}, //strData
+		dataType:"text",  //指服务器返回数据的数据格式
+		//这里的data是服务器返回的数据，strStatus是服务器返回的状态字符串如success等，
+		//xmlHttpRequest是js原生的对象，用来存储一些需要用到的数据，如存储在其中的服务器返回的状态码												
+		success:function(data,strStatus,xmlHttpRequest){
+			if (data=="对不起，该用户名已存在。") {
+				$("#username").val("").css("border-color","red");
+			}else{
+				$("#username").css("border-color","greenyellow");
+			}
+		}, 
+		//这里的xmlHttpRequest和strStatus与上面的都一样，strError异常对象，相当于java的异常字符串
+		error:function(xmlHttpRequest,strStatus,strError){
+			alert(strError);
+		}
+	});
+});
+});
+</script>
+</head>
+<body>
+<form action="/loginservlet1" method="get" name="f1">
+
+<table align="center">
+<th>请输入注册信息：</th>
+<tr>
+  <td>用户名：</td>
+  <td><input type="text" id="username" name="username" /></td><!--    onblur="selectUserName()"  -->
+</tr>
+<tr>
+  <td>密&nbsp;&nbsp;码：</td>
+  <td><input type="password" name="pass" /></td>
+</tr>
+<tr>
+  <td>确认密码：</td>
+  <td><input type="password" name="repass"/></td>
+</tr>
+<tr>
+  <td>昵称：</td>
+  <td><input type="text" name="nickname" /></td>
+</tr>
+<tr>
+  <td>真实姓名：</td>
+  <td><input type="text" name="realityname"/></td>
+</tr>
+<tr>
+  <td><input type="submit" value="提交" /></td>
+  <td><input type="reset" value="重置"/></td>
+</tr>
+</table>
+</form>
+</body>
 </html>
